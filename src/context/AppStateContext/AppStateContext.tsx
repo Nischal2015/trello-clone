@@ -1,5 +1,7 @@
 import { createContext, ReactNode } from 'react';
+import { useImmerReducer } from 'use-immer';
 import { AppStateContextProps, AppState } from './AppStateContext.d';
+import { appStateReducer } from '../../services';
 
 const appData: AppState = {
   lists: [
@@ -24,12 +26,13 @@ const appData: AppState = {
 export const AppStateContext = createContext<AppStateContextProps>({} as AppStateContextProps);
 
 function AppStateProvider({ children }: { children: ReactNode }) {
-  const { lists } = appData;
+  const [state, dispatch] = useImmerReducer(appStateReducer, appData);
+  const { lists } = state;
 
   const getTasksByListId = (id: string) => lists.find((list) => list.id === id)?.tasks || [];
 
   // eslint-disable-next-line react/jsx-no-constructed-context-values
-  return <AppStateContext.Provider value={{ lists, getTasksByListId }}>{children}</AppStateContext.Provider>;
+  return <AppStateContext.Provider value={{ lists, getTasksByListId, dispatch }}>{children}</AppStateContext.Provider>;
 }
 
 export default AppStateProvider;

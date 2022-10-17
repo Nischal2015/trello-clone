@@ -1,3 +1,6 @@
+import { Action } from '../../services';
+import { Dispatch } from 'react';
+
 type Task = {
   id: string;
   text: string;
@@ -16,4 +19,5 @@ export type AppState = {
 export type AppStateContextProps = {
   lists: List[];
   getTasksByListId(id: string): Task[];
+  dispatch: Dispatch<Action>;
 };
