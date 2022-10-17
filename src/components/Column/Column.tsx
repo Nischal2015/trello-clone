@@ -3,9 +3,10 @@ import { ColumnContainer, ColumnTitle } from '../../Styles';
 import { AddNewItem } from '../AddNewItem';
 import { Card } from '../Card';
 import { ColumnProps } from './Column.d';
+import { addTask } from '../../services';
 
 function Column({ text, id }: ColumnProps) {
-  const { getTasksByListId } = useAppState();
+  const { getTasksByListId, dispatch } = useAppState();
 
   const tasks = getTasksByListId(id);
 
@@ -15,7 +16,7 @@ function Column({ text, id }: ColumnProps) {
       {tasks.map((task) => (
         <Card text={task.text} key={task.id} id={task.id} />
       ))}
-      <AddNewItem toggleButtonText="+ Add another card" onAdd={console.log} dark />
+      <AddNewItem toggleButtonText="+ Add another card" onAdd={(itemText) => dispatch(addTask(itemText, id))} dark />
     </ColumnContainer>
   );
 }
