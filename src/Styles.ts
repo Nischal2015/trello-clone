@@ -43,6 +43,7 @@ export const CardContainer = styled.div({
   maxWidth: '30rem',
   borderRadius: '4px',
   boxShadow: '0 1px 0 0 #091e4240',
+  lineHeight: '1.4',
 });
 
 export const ColumnContainer = styled.div({
