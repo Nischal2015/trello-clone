@@ -29,8 +29,11 @@
   "dependencies": {
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
+    "immer": "^9.0.15",
+    "nanoid": "^4.0.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "use-immer": "^0.7.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.0.3",
