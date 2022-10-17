@@ -1,12 +1,13 @@
 import './App.css';
+import { AddNewItem, Column } from './components';
+import { AppContainer } from './Styles';
 
 function App() {
   return (
-    <div className="App">
-      <div className="card">
-        <h1>This is Trello Clone</h1>
-      </div>
-    </div>
+    <AppContainer>
+      <Column text="Todo:" />
+      <AddNewItem toggleButtonText="+Add another list" onAdd={console.log} />
+    </AppContainer>
   );
 }
 
