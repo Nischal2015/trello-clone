@@ -19,9 +19,9 @@
     "paths": {
       "@/*": ["*", "src/*"],
       "@/Assets/*": ["*", "src/assets/*"],
-      "@/Components/*": ["*", "src/components/*"],
+      "@/Components/*": ["*", "src/components/*"]
     }
   },
-  "include": ["src"],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
