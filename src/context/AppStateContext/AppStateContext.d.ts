@@ -1,5 +1,6 @@
 import { Action } from '../../services';
 import { Dispatch } from 'react';
+import { DragItem } from '../../types';
 
 type Task = {
   id: string;
@@ -14,10 +15,10 @@ type List = {
 
 export type AppState = {
   lists: List[];
+  draggedItem: DragItem | null;
 };
 
-export type AppStateContextProps = {
-  lists: List[];
+export interface AppStateContextProps extends AppState {
   getTasksByListId(id: string): Task[];
   dispatch: Dispatch<Action>;
-};
+}

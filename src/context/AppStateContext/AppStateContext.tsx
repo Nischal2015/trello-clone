@@ -4,6 +4,7 @@ import { AppStateContextProps, AppState } from './AppStateContext.d';
 import { appStateReducer } from '../../services';
 
 const appData: AppState = {
+  draggedItem: null,
   lists: [
     {
       id: '0',
@@ -27,12 +28,16 @@ export const AppStateContext = createContext<AppStateContextProps>({} as AppStat
 
 function AppStateProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useImmerReducer(appStateReducer, appData);
-  const { lists } = state;
+  const { lists, draggedItem } = state;
 
   const getTasksByListId = (id: string) => lists.find((list) => list.id === id)?.tasks || [];
 
-  // eslint-disable-next-line react/jsx-no-constructed-context-values
-  return <AppStateContext.Provider value={{ lists, getTasksByListId, dispatch }}>{children}</AppStateContext.Provider>;
+  return (
+    // eslint-disable-next-line react/jsx-no-constructed-context-values
+    <AppStateContext.Provider value={{ lists, getTasksByListId, dispatch, draggedItem }}>
+      {children}
+    </AppStateContext.Provider>
+  );
 }
 
 export default AppStateProvider;
