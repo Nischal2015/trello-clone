@@ -1,5 +1,5 @@
 import './App.css';
-import { AddNewItem, Column } from './components';
+import { AddNewItem, Column, CustomDragLayer } from './components';
 import { useAppState } from './hooks';
 import { AppContainer } from './Styles';
 import { addList } from './services';
@@ -9,6 +9,7 @@ function App() {
 
   return (
     <AppContainer>
+      <CustomDragLayer />
       {lists.map((list) => (
         <Column text={list.text} key={list.id} id={list.id} />
       ))}
