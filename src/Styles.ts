@@ -5,6 +5,18 @@ type AddItemButtonProps = {
   dark?: boolean;
 };
 
+type DragPreviewContainerProps = {
+  isHidden?: boolean;
+  isPreview?: boolean;
+};
+
+type DragPreviewWrapperProps = {
+  position: {
+    x: number;
+    y: number;
+  };
+};
+
 export const AddItemButton = styled.button<AddItemButtonProps>(
   {
     backgroundColor: '#ffffff3d',
@@ -35,7 +47,13 @@ export const AppContainer = styled.div({
   padding: '2rem',
 });
 
-export const CardContainer = styled.div({
+export const DragPreviewContainer = styled.div<DragPreviewContainerProps>((props) => ({
+  transition: 'transform 0.15s ease-in',
+  opacity: props.isHidden ? 0 : 1,
+  transform: props.isPreview ? 'rotate(5deg)' : 'none',
+}));
+
+export const CardContainer = styled(DragPreviewContainer)({
   backgroundColor: '#fff',
   cursor: 'pointer',
   marginBottom: '0.8rem',
@@ -46,7 +64,7 @@ export const CardContainer = styled.div({
   lineHeight: '1.4',
 });
 
-export const ColumnContainer = styled.div({
+export const ColumnContainer = styled(DragPreviewContainer)({
   backgroundColor: '#ebecf0',
   width: '30rem',
   minHeight: '4rem',
@@ -60,6 +78,20 @@ export const ColumnTitle = styled.div({
   padding: '.6rem 1.6rem 1.2rem',
   fontWeight: '600',
 });
+
+export const CustomDragLayerContainer = styled.div({
+  position: 'fixed',
+  left: '0',
+  top: '0',
+  pointerEvents: 'none',
+  height: '100%',
+  width: '100%',
+  zIndex: '100',
+});
+
+export const DragPreviewWrapper = styled.div<DragPreviewWrapperProps>((props) => ({
+  transform: `translate(${props.position.x}px, ${props.position.y}px)`,
+}));
 
 export const NewItemButton = styled.div({
   backgroundColor: '#5aac44',
